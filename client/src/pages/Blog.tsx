@@ -247,7 +247,7 @@ export default function Blog() {
 
   useEffect(() => {
     if (matchSlug && params?.slug) {
-      const post = blogPosts.find((p) => p.slug === params.slug);
+      const post = blogPosts.reverse().find((p) => p.slug === params.slug);
       if (post) {
         setSelectedPost(post);
         setNotFound(false);
