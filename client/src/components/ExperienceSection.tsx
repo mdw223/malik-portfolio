@@ -7,7 +7,7 @@ export function ExperienceSection() {
     <section id="experience" className="py-20 px-4 sm:px-6" data-testid="section-experience">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Work Experience</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Experience</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             My professional journey building products and leading engineering teams.
           </p>

@@ -51,6 +51,7 @@ export interface Project {
   demoUrl?: string;
   githubUrl?: string;
   blogUrl?: string;
+  linkedInPostUrl?: string;
 }
 
 export interface Experience {

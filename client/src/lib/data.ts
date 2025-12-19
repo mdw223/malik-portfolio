@@ -11,9 +11,9 @@ export const personalInfo: PersonalInfo = {
     "Passionate about ethical tech, AI, and Cybersecurity",
     "Building impactful solutions"
   ],
-  linkedIn: "https://linkedin.com/in/johndoe",
-  github: "https://github.com/johndoe",
-  youtube: "https://youtube.com/@johndoe",
+  linkedIn: "https://www.linkedin.com/in/malik-wensman/",
+  github: "https://github.com/mdw223",
+  youtube: "https://www.youtube.com/@MalikDiallo223",
   calendlyUrl: "https://calendly.com/tritechs",
   email: "malik.code@proton.me",
   axiomWorkspaceUrl: "https://axiomworkspace.com/"
@@ -22,80 +22,83 @@ export const personalInfo: PersonalInfo = {
 export const projects: Project[] = [
   {
     id: "1",
-    title: "AI Code Assistant",
-    description: "An intelligent code completion tool powered by GPT-4 that helps developers write better code faster. Features include real-time suggestions, code explanations, and bug detection.",
-    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&h=400&fit=crop",
-    demoUrl: "https://demo.example.com/ai-assistant",
-    githubUrl: "https://github.com/johndoe/ai-code-assistant",
-    blogUrl: "/blog/ai-code-assistant"
+    title: "Calendly API Endpoint Security",
+    description: "Developed a complete Calendly integration with secure signature verification for an enterprise Axiom Workspace CRM.",
+    image: "https://i9.ytimg.com/vi/eilpiJ-940U/mqdefault.jpg?v=69348dc6&sqp=CLTIlsoG&rs=AOn4CLATQpoF4TE6EfS4lnMgLH4ZHxqTIg",
+    demoUrl: "https://youtu.be/eilpiJ-940U",
+    githubUrl: "",
+    blogUrl: "",
+    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_calendly-api-endpoint-security-activity-7403165773868986369-z5Wu?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg"
   },
   {
     id: "2",
-    title: "TaskFlow Pro",
-    description: "A modern project management application with Kanban boards, time tracking, and team collaboration features. Built with React and Node.js.",
-    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
-    demoUrl: "https://taskflow.example.com",
-    githubUrl: "https://github.com/johndoe/taskflow-pro",
-    blogUrl: "/blog/taskflow-pro"
+    title: "Gmail Pubsub Api Endpoint Security",
+    description: "Robust security for Axiom Workspace CRM's Gmail Pubsub Api endpoint, protecting our real-time email notifications.",
+    image: "https://i9.ytimg.com/vi/rWLARWdb5Cg/mqdefault.jpg?v=69338907&sqp=CIzNlsoG&rs=AOn4CLBTjLdmm-jV6LSwYonhIJ51SPKYPg",
+    demoUrl: "https://youtu.be/rWLARWdb5Cg",
+    githubUrl: "",
+    blogUrl: "",
+    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_gmail-pubsub-api-endpoint-security-activity-7402886209502609409-8CBX?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg"
   },
   {
     id: "3",
-    title: "CryptoTracker",
-    description: "Real-time cryptocurrency portfolio tracker with price alerts, market analysis, and portfolio performance insights.",
-    image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=600&h=400&fit=crop",
-    demoUrl: "https://crypto.example.com",
-    githubUrl: "https://github.com/johndoe/crypto-tracker"
+    title: "Gmail Integration",
+    description: "implemented Gmail API in Axiom Workspace, from sending emails, contact syncing, database, pubsub, Oauth2, and hangfire.",
+    image: "https://i9.ytimg.com/vi_webp/jEafSZkSwiw/mq1.webp?sqp=CLjPlsoG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGBMgEyh_MA8=&rs=AOn4CLBGOCKYuaRzY_aSjWn-41DEuH0xQg",
+    demoUrl: "https://youtu.be/jEafSZkSwiw",
+    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_gmail-api-full-stack-demo-activity-7400713996967833600-adt6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg"
   },
   {
     id: "4",
-    title: "DevBlog Engine",
-    description: "A minimalist blogging platform designed for developers. Supports markdown, syntax highlighting, and SEO optimization out of the box.",
-    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&fit=crop",
-    githubUrl: "https://github.com/johndoe/devblog-engine",
-    blogUrl: "/blog/devblog-engine"
+    title: "slice325 Learning Management System",
+    description: "Built a learning management system, leveraged Hugo static site generator with markdown quiz plugins to create a maintainable, no-cost LMS solution at the Making Progress Charity Hackathon.",
+    image: "https://slice325.org/wp-content/uploads/2019/05/cropped-SLICE325-Logo-1.png",
+    githubUrl: "https://github.com/mdw223/slice325",
+    demoUrl: "https://mdw223.github.io/slice325/",
+    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_hackathon-webdevelopment-lms-activity-7394115962871959552-gxeE?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg"
   },
   {
     id: "5",
-    title: "Weather Widget",
-    description: "A beautiful, customizable weather widget that can be embedded in any website. Features 5-day forecasts and location-based weather data.",
-    image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=600&h=400&fit=crop",
-    demoUrl: "https://weather.example.com",
-    githubUrl: "https://github.com/johndoe/weather-widget"
+    title: "LangChain AI Chatbot",
+    description: "Built a beginner-friendly AI chatbot using LangChain and LangGraph that connects to Google's Gemini AI model for conversational interactions.",
+    image: "https://media.licdn.com/dms/image/sync/v2/D4E27AQEcMLb22Gecbw/articleshare-shrink_480/B4EZqeaH_kIQAo-/0/1764807834965?e=1766768400&v=beta&t=iff_BWlAdmHUpndRWieCvcttnyVnTl1sZrdWoFEIdkM",
+    demoUrl: "",
+    githubUrl: "https://github.com/mdw223/langchain_chatbot",
+    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_github-mdw223langchainchatbot-activity-7397050529106780160-A_XX?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg"
   },
   {
     id: "6",
-    title: "API Gateway",
-    description: "A lightweight API gateway with rate limiting, authentication, and request logging. Perfect for microservices architectures.",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
-    githubUrl: "https://github.com/johndoe/api-gateway",
-    blogUrl: "/blog/api-gateway"
+    title: "Calendly Integration",
+    description: "Built complete Calendly integration with webhook subscription management with comprehensive event lifecycle management (creation, rescheduling, cancellation)",
+    image: "https://i9.ytimg.com/vi/jxsZmXSKSRE/mqdefault.jpg?v=68efd94e&sqp=CJDUlsoG&rs=AOn4CLDCl9KZ8P4I45eyLtz-na_fUltChw",
+    demoUrl: "https://youtu.be/jxsZmXSKSRE"
+  },
+  {
+    id: "7",
+    title: "Enterprise CRM Favorites System Implementation",
+    description: "Developed a multi-entity favorites system with scalable, full-stack architecture and an intuitive star-based UI for improved user interaction.",
+    image: "https://i9.ytimg.com/vi_webp/-unKlswz4zU/mq3.webp?sqp=CLzWlsoG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGMgYyhjMA8=&rs=AOn4CLBFDZELOKIpidOI62-80LTbGBfYXw",
+    demoUrl: "https://youtu.be/-unKlswz4zU",
+    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_axiomsoftware-fullstackdevelopment-angular-activity-7358667071192190976-6owY?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg"
   }
 ];
 
 export const experiences: Experience[] = [
   {
     id: "1",
-    company: "TechCorp Inc.",
-    position: "Senior Software Engineer",
-    logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=100&h=100&fit=crop",
-    period: "Jan 2022 - Present",
-    description: "Leading the frontend architecture team, building scalable React applications. Mentoring junior developers and establishing best practices for code quality and testing."
+    company: "Axiom Software",
+    position: "Full-Stack Software Developer",
+    logo: "https://media.licdn.com/dms/image/v2/C4E0BAQEgJOq9lM-34Q/company-logo_100_100/company-logo_100_100/0/1630605341915?e=1767830400&v=beta&t=pUcLuD7hA4uvxggdm9iheTPU_pyWjYx_9Uly9Nfocd0",
+    period: "Feb 2025 - Present",
+    description: "Developed a sophisticated CRM enhancement with multi-module integrations using Angular, C#, and SQL Server, featuring advanced webhooks, authentication, and scalable database architectures. Implemented complex features including Google, Microsoft, and Calendly integrations."
   },
   {
     id: "2",
-    company: "StartupXYZ",
-    position: "Full Stack Developer",
-    logo: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=100&h=100&fit=crop",
-    period: "Jun 2019 - Dec 2021",
-    description: "Built and maintained multiple microservices using Node.js and Python. Implemented CI/CD pipelines and improved deployment frequency by 300%."
-  },
-  {
-    id: "3",
-    company: "Digital Agency Co.",
-    position: "Junior Developer",
-    logo: "https://images.unsplash.com/photo-1572021335469-31706a17ber?w=100&h=100&fit=crop",
-    period: "Aug 2017 - May 2019",
-    description: "Developed responsive websites and web applications for various clients. Gained experience in JavaScript, React, and modern CSS frameworks."
+    company: "North Carolina State University",
+    position: "Computer Science (BS)",
+    logo: "https://media.licdn.com/dms/image/v2/C4D0BAQGaD7AuaL571Q/company-logo_100_100/company-logo_100_100/0/1645128364859/north_carolina_state_university_logo?e=1767830400&v=beta&t=XoZUnLQ2fIcvOm6wtv1uIfvxVVpb3FWW9IrV9RU4vIs",
+    period: "Aug 2022 - Present",
+    description: "A Senior, focusing on software development, programming languages, database management, and cybersecurity."
   }
 ];
 

@@ -1,6 +1,6 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, FileText } from "lucide-react";
+import { ExternalLink, Github, FileText, Linkedin } from "lucide-react";
 import { Link } from "wouter";
 import { projects } from "@/lib/data";
 
@@ -69,6 +69,20 @@ export function ProjectsSection() {
                       Blog
                     </Button>
                   </Link>
+                )}
+                {
+                  project.linkedInPostUrl && (
+                    <a
+                    href={project.linkedInPostUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid={`link-linkedinpost-${project.id}`}
+                  >
+                    <Button size="sm" variant="outline" className="gap-1.5">
+                      <Linkedin className="w-4 h-4" />
+                      LinkedIn Post
+                    </Button>
+                  </a>
                 )}
               </CardFooter>
             </Card>
