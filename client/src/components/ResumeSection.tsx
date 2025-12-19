@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { FileText, Download, ExternalLink } from "lucide-react";
 
 export function ResumeSection() {
-  const resumeUrl = "/resume.pdf";
+  const resumeUrl = "/Malik Wensman - Technical Resume.pdf";
 
   return (
     <section id="resume" className="py-20 px-4 sm:px-6 bg-muted/30" data-testid="section-resume">
@@ -15,9 +15,9 @@ export function ResumeSection() {
           </p>
         </div>
 
-        <Card className="overflow-hidden">
+        <Card className="overflow-hidden flex justify-center">
           <CardContent className="p-0">
-            <div className="relative bg-muted/50">
+            <div className="relative bg-muted/50 flex justify-center">
               <div className="aspect-[8.5/11] max-h-[500px] overflow-hidden flex items-center justify-center">
                 <div className="bg-background border border-border rounded-lg shadow-lg m-8 p-8 w-full max-w-md">
                   <div className="space-y-6">
@@ -26,9 +26,9 @@ export function ResumeSection() {
                         <FileText className="w-8 h-8 text-primary" />
                       </div>
                       <div className="space-y-1">
-                        <h3 className="text-2xl font-bold">John Doe</h3>
-                        <p className="text-muted-foreground">Senior Software Engineer</p>
-                        <p className="text-sm text-muted-foreground">john@example.com</p>
+                        <h3 className="text-2xl font-bold">Malik Wensman</h3>
+                        <p className="text-muted-foreground">Full Stack Software Engineer</p>
+                        <p className="text-sm text-muted-foreground">malik.code@proton.me</p>
                       </div>
                     </div>
 
@@ -36,20 +36,19 @@ export function ResumeSection() {
                       <div>
                         <h4 className="font-semibold text-foreground mb-2">Experience</h4>
                         <div className="space-y-2 text-muted-foreground">
-                          <p>Senior Software Engineer at TechCorp</p>
-                          <p>Full Stack Developer at StartupXYZ</p>
+                          <p>Full Stack at Axiom Software</p>
                         </div>
                       </div>
 
                       <div>
                         <h4 className="font-semibold text-foreground mb-2">Education</h4>
-                        <p className="text-muted-foreground">B.S. Computer Science, Stanford</p>
+                        <p className="text-muted-foreground">B.S. Computer Science, NC State</p>
                       </div>
 
                       <div>
                         <h4 className="font-semibold text-foreground mb-2">Skills</h4>
                         <div className="flex flex-wrap gap-2">
-                          {["React", "TypeScript", "Node.js", "Python", "AWS"].map((skill) => (
+                          {["React", "TypeScript", "Node.js", "Python", "C#", "SQL", "Angular", "Java", "C"].map((skill) => (
                             <span
                               key={skill}
                               className="px-2 py-1 bg-muted rounded-md text-xs text-muted-foreground"
