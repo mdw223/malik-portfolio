@@ -1,21 +1,22 @@
 import type { Project, Experience, BlogPost, PersonalInfo } from "@shared/schema";
 
 export const personalInfo: PersonalInfo = {
-  name: "John Doe",
+  name: "Malik Wensman",
   title: "Full Stack Developer",
-  bio: "Passionate software engineer with 5+ years of experience building scalable web applications. I love turning complex problems into simple, beautiful solutions.",
-  profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
+  bio: "Passionate Senior in Computer Science and software engineer at startup where I build Axiom Workspace, an easy-to-use affordable CRM for small businesses.",
+  profileImage: "https://avatars.githubusercontent.com/u/151095055?v=4",
   bullets: [
-    "Senior Software Engineer at TechCorp",
-    "B.S. Computer Science, Stanford University",
-    "Passionate about AI, Web3, and Open Source",
-    "Building tools that make developers' lives easier"
+    "Full Stack Software Enginer at Axiom Software",
+    "Senior in Computer Science, Norht Carolina State University",
+    "Passionate about ethical tech, AI, and Cybersecurity",
+    "Building impactful solutions"
   ],
   linkedIn: "https://linkedin.com/in/johndoe",
   github: "https://github.com/johndoe",
   youtube: "https://youtube.com/@johndoe",
-  calendlyUrl: "https://calendly.com/johndoe",
-  email: "john@example.com"
+  calendlyUrl: "https://calendly.com/tritechs",
+  email: "malik.code@proton.me",
+  axiomWorkspaceUrl: "https://axiomworkspace.com/"
 };
 
 export const projects: Project[] = [

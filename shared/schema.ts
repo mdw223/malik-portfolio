@@ -83,4 +83,5 @@ export interface PersonalInfo {
   youtube: string;
   calendlyUrl: string;
   email: string;
+  axiomWorkspaceUrl: string;
 }
