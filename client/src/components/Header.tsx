@@ -90,7 +90,8 @@ export function Header() {
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center gap-2" data-testid="link-home">
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">MW</span>
+              {/* <span className="text-primary-foreground font-bold text-sm">MW</span> */}
+              <img src="/favicon.png" alt="" />
             </div>
             <span className="font-semibold text-lg hidden sm:block">{personalInfo.name}</span>
           </Link>
