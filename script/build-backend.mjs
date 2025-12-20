@@ -1,15 +1,7 @@
-import { build as esbuild } from "esbuild";
-import { build as viteBuild } from "vite";
-import { rm, readFile } from "fs/promises";
-/** 
-Clean the existing distribution folder
-Build the client-side application using Vite
-Build the server-side application using esbuild
-Optimize dependencies and reduce system calls
- */
+// script/build-backend.mjs
+import { build } from "esbuild";
+import { readFile, mkdir } from "fs/promises";
 
-// server deps to bundle to reduce openat(2) syscalls
-// which helps cold start times
 const allowlist = [
   "@google/generative-ai",
   "axios",
@@ -38,13 +30,12 @@ const allowlist = [
   "zod-validation-error",
 ];
 
-async function buildAll() {
-  await rm("dist", { recursive: true, force: true });
-
-  console.log("building client...");
-  await viteBuild();
-
-  console.log("building server...");
+async function buildBackend() {
+  console.log("Building backend for Render...");
+  
+  // Ensure dist directory exists
+  await mkdir("dist", { recursive: true });
+  
   const pkg = JSON.parse(await readFile("package.json", "utf-8"));
   const allDeps = [
     ...Object.keys(pkg.dependencies || {}),
@@ -52,7 +43,7 @@ async function buildAll() {
   ];
   const externals = allDeps.filter((dep) => !allowlist.includes(dep));
 
-  await esbuild({
+  await build({
     entryPoints: ["server/index.ts"],
     platform: "node",
     bundle: true,
@@ -64,7 +55,6 @@ async function buildAll() {
     minify: true,
     external: [
       ...externals,
-      // Explicitly exclude Vite and build tools that shouldn't be bundled
       "vite",
       "@vitejs/*",
       "@replit/*",
@@ -73,11 +63,11 @@ async function buildAll() {
     ],
     logLevel: "info",
   });
-
-  console.log("✅ Build complete!");
+  
+  console.log("✅ Backend built successfully at dist/index.cjs");
 }
 
-buildAll().catch((err) => {
-  console.error(err);
+buildBackend().catch((err) => {
+  console.error("❌ Build failed:", err);
   process.exit(1);
 });

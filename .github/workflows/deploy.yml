@@ -53,7 +53,7 @@ jobs: # the job that occurs when we deploy
 
       - name: Build frontend
         run: |
-          npm run build
+          npm run build:pages
       
       - name: List build output
         run: ls -la ./dist/public
