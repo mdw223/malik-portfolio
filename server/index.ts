@@ -3,6 +3,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
+import cors from 'cors'; 
 // This is the main server initialization file for a full-stack React application, handling server setup, middleware, routing, and environment-specific configurations.
 const app = express();
 const httpServer = createServer(app);
@@ -12,6 +13,15 @@ declare module "http" {
     rawBody: unknown;
   }
 }
+
+app.use(cors({
+  origin: [
+    process.env.FRONTEND_URL || 'http://localhost:3000', // Local development
+    'https://your-render-frontend-url.app', // Render frontend URL
+    // Add any other allowed origins
+  ],
+  credentials: true // If you're using sessions or cookies
+}));
 
 app.use(
   express.json({ // Parse JSON request bodies
@@ -86,6 +96,7 @@ app.use((req, res, next) => {
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
   const port = parseInt(process.env.PORT || "5000", 10);
+  const NODE_ENV = process.env.NODE_ENV || 'production';
   // httpServer.listen(
   //   {
   //     port,
@@ -97,6 +108,6 @@ app.use((req, res, next) => {
   //   },
   // );
   httpServer.listen(port, () => {
-    log(`serving on http://localhost:${port}`);
+    log(`<b>Server running on ${NODE_ENV} mode at port ${port}</b>`);
   });
 })();

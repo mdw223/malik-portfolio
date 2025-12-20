@@ -65,6 +65,8 @@ A modern, full-featured personal portfolio website built with React, TypeScript,
    npm install resend
    npm install express-rate-limit
    npm install dotenv
+   npm install cors
+   npm install @types/cors -D
    ```
 
 3. **Configure environment variables** (optional)
@@ -97,6 +99,29 @@ npm run build
 
 The compiled frontend will be in the `dist` directory.
 
+## System Architecture
+
+### Frontend Architecture
+- **Framework**: React 18 with TypeScript
+- **Routing**: Wouter for lightweight client-side routing
+- **Styling**: Tailwind CSS with CSS variables for theming (dark/light mode)
+- **Component Library**: shadcn/ui (New York style) built on Radix UI primitives
+- **State Management**: React Query (TanStack Query) for server state, React Context for theme
+- **Form Handling**: React Hook Form with Zod validation
+- **Build Tool**: Vite with hot module replacement
+
+### Backend Architecture
+- **Runtime**: Node.js with Express
+- **Language**: TypeScript with ES modules
+- **API Pattern**: RESTful endpoints under `/api` prefix
+- **Database ORM**: Drizzle ORM with PostgreSQL dialect
+- **Schema Validation**: Zod with drizzle-zod for type-safe schemas
+
+### Data Storage
+- **Database**: PostgreSQL (configured via DATABASE_URL environment variable)
+- **Development Fallback**: In-memory storage (MemStorage class) when database is not available
+- **Schema Location**: `shared/schema.ts` contains all database table definitions
+
 ## Project Structure
 
 ```
@@ -112,6 +137,8 @@ portfolio/
 │   ├── public/             # Static assets (includes resume.pdf)
 │   └── index.html          # HTML entry point
 ├── server/                 # Express backend
+|   |── middleware/
+|       └── rateLimiter.ts  # rate limiting for emails
 │   ├── index.ts            # Server entry point
 │   ├── routes.ts           # API route definitions
 │   ├── storage.ts          # Data access layer
@@ -125,6 +152,48 @@ portfolio/
 ├── vite.config.ts          # Vite configuration
 └── README.md               # This file
 ```
+
+### Key Design Patterns
+- **Monorepo Structure**: Client and server share types via `@shared/*` path alias
+- **Schema-First Approach**: Database schemas generate both TypeScript types and Zod validators
+- **Component-Driven UI**: Reusable shadcn/ui components with consistent styling
+- **CSS Variables Theming**: Theme colors defined in CSS variables for easy dark/light switching
+
+## External Dependencies
+
+### UI Components & Styling
+- **Radix UI**: Full suite of accessible, unstyled UI primitives
+- **Tailwind CSS**: Utility-first CSS framework
+- **class-variance-authority**: Component variant management
+- **Lucide React**: Icon library
+- **React Icons**: Additional icon sets (LinkedIn, GitHub, YouTube)
+
+### Data & Forms
+- **TanStack React Query**: Server state management and caching
+- **React Hook Form**: Form state management
+- **Zod**: Schema validation
+- **drizzle-zod**: Zod schema generation from Drizzle schemas
+
+### Blog Rendering
+- **React Markdown**: Markdown content rendering
+- **remark-gfm**: GitHub Flavored Markdown support
+- **react-syntax-highlighter**: Code block syntax highlighting with Prism
+
+### Database & Backend
+- **Drizzle ORM**: TypeScript ORM for PostgreSQL
+- **PostgreSQL**: Primary database (via `pg` driver)
+- **connect-pg-simple**: Session storage for PostgreSQL
+- **express-session**: Session middleware
+
+### External Services (Configured via Environment)
+- **Calendly**: Meeting scheduling (URL stored in data)
+- **Email Integration**: Contact form submissions (planned via API)
+
+### Development Tools
+- **Vite**: Frontend build tool with HMR
+- **tsx**: TypeScript execution for Node.js
+- **esbuild**: Production server bundling
+- **Replit Plugins**: Dev banner, cartographer, runtime error overlay
 
 ## Customization
 
@@ -168,7 +237,19 @@ const transporter = nodemailer.createTransport({...})
 await transporter.sendMail({...})
 ```
 
-## Deployment
+### How I did Email Sending
+
+I used [resend](https://resend.com). The free tier is 100 emails/day.
+1. Sign up
+2. Get your API key from the dashboard
+3. Specify your keys in your environment or in github pages
+Now emails will be sent TO your Proton email.
+Works anywhere your app is deployed (Vercel, Railway, etc.)
+
+
+## Deployment 
+
+More documentation on deployment in DEPLOYMENT.md
 
 ### Option 1: Deploy Frontend to GitHub Pages
 
@@ -185,7 +266,7 @@ await transporter.sendMail({...})
 3. **Configure GitHub Pages**
    - Go to repository Settings → Pages
    - Set source to "Deploy from a branch"
-   - Select "gh-pages" branch
+   - Select "gh-pages" or "main" or "prod" branch
 
 **Quick Deploy Script:**
 ```bash
@@ -206,6 +287,18 @@ For a complete deployment with backend:
 - **Fly.io** (Free tier available)
 - **Heroku** (Paid)
 - **AWS** (EC2, Lambda)
+
+### How I hosted my backend  (⚠️Note: The Express backend needs to be deployed separately)
+1. Log into Render.com
+2. Click "New +" button
+3. Select "Web Service"
+4. Connect your GitHub repository
+5. Configure deployment settings:
+   Branch: Usually main or master
+   Root Directory: /backend (if applicable)
+   Build Command: npm install
+   Start Command: npm start
+6. Add environment varibles 
 
 Environment variables to set on your hosting platform:
 - `DATABASE_URL` - PostgreSQL connection string (if using database)
@@ -282,13 +375,12 @@ For issues or questions, refer to:
 
 ## Roadmap
 
-- [ ] Email integration for contact form (SendGrid, Mailgun, etc.)
+- [X] Email integration for contact form (SendGrid, Mailgun, etc.)
 - [ ] Comment system for blog posts
 - [ ] Analytics integration
 - [ ] Project filtering by category
 - [ ] Blog post categories and archives
 - [ ] Newsletter signup
-- [ ] Dark mode improvements
 
 ---
 
