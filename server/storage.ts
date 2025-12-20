@@ -18,6 +18,7 @@ export class MemStorage implements IStorage {
     this.contactMessages = new Map();
   }
 
+  // for potential Admin features to access msg management or portfolio editing in data.ts ...
   async getUser(id: string): Promise<User | undefined> {
     return this.users.get(id);
   }

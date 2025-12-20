@@ -37,3 +37,6 @@ author = "agent"
 task = "shell.exec"
 args = "npm run dev"
 waitForPort = 5000
+
+# this file is a configuration file specifically used by Replit, an online integrated development environment (IDE) and cloud computing platform. 
+# It defines how a project should be set up, run, and deployed within the Replit environment.

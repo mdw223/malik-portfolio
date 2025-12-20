@@ -1,6 +1,12 @@
 import { build as esbuild } from "esbuild";
 import { build as viteBuild } from "vite";
 import { rm, readFile } from "fs/promises";
+/** script is designed to:
+Clean the existing distribution folder
+Build the client-side application using Vite
+Build the server-side application using esbuild
+Optimize dependencies and reduce system calls
+ */
 
 // server deps to bundle to reduce openat(2) syscalls
 // which helps cold start times

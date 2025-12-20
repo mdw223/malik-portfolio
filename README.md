@@ -62,6 +62,9 @@ A modern, full-featured personal portfolio website built with React, TypeScript,
 2. **Install dependencies**
    ```bash
    npm install
+   npm install resend
+   npm install express-rate-limit
+   npm install dotenv
    ```
 
 3. **Configure environment variables** (optional)
@@ -69,6 +72,8 @@ A modern, full-featured personal portfolio website built with React, TypeScript,
    ```env
    DATABASE_URL=your_database_url_here
    SESSION_SECRET=your_session_secret
+   RESEND_API_KEY=_your_resend_api_key
+   NOTIFICATION_EMAIL=your_email
    ```
 
 ### Development

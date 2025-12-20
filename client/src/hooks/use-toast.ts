@@ -1,12 +1,12 @@
 import * as React from "react"
-
+// This is a custom toast (notification) management system for React applications, providing a flexible, centralized way to handle notifications.
 import type {
   ToastActionElement,
   ToastProps,
 } from "@/components/ui/toast"
 
-const TOAST_LIMIT = 1
-const TOAST_REMOVE_DELAY = 1000000
+const TOAST_LIMIT = 1 // Maximum number of simultaneous toasts (set to 1)
+const TOAST_REMOVE_DELAY = 1000000 // Timeout before removing a toast (extremely long in this case)
 
 type ToasterToast = ToastProps & {
   id: string
@@ -24,7 +24,7 @@ const actionTypes = {
 
 let count = 0
 
-function genId() {
+function genId() { // Generates unique IDs for toasts
   count = (count + 1) % Number.MAX_SAFE_INTEGER
   return count.toString()
 }
@@ -71,7 +71,7 @@ const addToRemoveQueue = (toastId: string) => {
   toastTimeouts.set(toastId, timeout)
 }
 
-export const reducer = (state: State, action: Action): State => {
+export const reducer = (state: State, action: Action): State => { // Manages toast state
   switch (action.type) {
     case "ADD_TOAST":
       return {

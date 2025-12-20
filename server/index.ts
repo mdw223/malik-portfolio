@@ -3,7 +3,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
-
+// This is the main server initialization file for a full-stack React application, handling server setup, middleware, routing, and environment-specific configurations.
 const app = express();
 const httpServer = createServer(app);
 
@@ -14,16 +14,16 @@ declare module "http" {
 }
 
 app.use(
-  express.json({
+  express.json({ // Parse JSON request bodies
     verify: (req, _res, buf) => {
       req.rawBody = buf;
     },
   }),
 );
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false })); // Parse URL-encoded request bodies
 
-export function log(message: string, source = "express") {
+export function log(message: string, source = "express") { // custom logging 
   const formattedTime = new Date().toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
