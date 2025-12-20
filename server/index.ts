@@ -81,12 +81,34 @@ app.use((req, res, next) => {
     throw err;
   });
 
+  // Setup static file serving based on environment
+  // In production on Render (backend-only), skip frontend serving
+  // In development, use Vite dev server
+  // In production with frontend build, serve static files
+  const isBackendOnly = process.env.BACKEND_ONLY === "true";
+
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
   if (process.env.NODE_ENV === "production") {
-    serveStatic(app);
+    if (isBackendOnly) {
+      log("⚠️  Running in BACKEND_ONLY mode - frontend serving disabled");
+      log("   Frontend should be deployed separately (e.g., GitHub Pages)");
+      
+      // Optional: Add a health check endpoint
+      app.get("/", (_req, res) => {
+        res.json({ 
+          status: "ok", 
+          message: "API server is running",
+          mode: "backend-only"
+        });
+      });
+    } else {
+      log("📦 Attempting to serve static frontend files...");
+      serveStatic(app);
+    }
   } else {
+    log("🔧 Setting up Vite dev server...");
     const { setupVite } = await import("./vite");
     await setupVite(httpServer, app);
   }
@@ -97,17 +119,11 @@ app.use((req, res, next) => {
   // It is the only port that is not firewalled.
   const port = parseInt(process.env.PORT || "5000", 10);
   const NODE_ENV = process.env.NODE_ENV || 'production';
-  // httpServer.listen(
-  //   {
-  //     port,
-  //     host: "0.0.0.0",
-  //     reusePort: true,
-  //   },
-  //   () => {
-  //     log(`serving on port ${port}`);
-  //   },
-  // );
+
   httpServer.listen(port, () => {
-    log(`<b>Server running on ${NODE_ENV} mode at port ${port}</b>`);
+    log(`🚀 Server running in ${NODE_ENV} mode on port ${port}`);
+    if (isBackendOnly) {
+      log(`   API available at: http://localhost:${port}/`);
+    }
   });
 })();
