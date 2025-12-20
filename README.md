@@ -31,6 +31,8 @@ A modern, full-featured personal portfolio website built with React, TypeScript,
 - **React Markdown** - Markdown rendering
 - **Remark GFM** - GitHub Flavored Markdown support
 - **React Syntax Highlighter** - Code block syntax highlighting
+- **Toast** - notification management system
+- **GitHub Pages** - front end hosting with GitHub Actions
 
 ### Backend
 - **Node.js** - Runtime
@@ -39,6 +41,8 @@ A modern, full-featured personal portfolio website built with React, TypeScript,
 - **Drizzle ORM** - Database ORM (optional - currently using in-memory storage)
 - **Zod** - Request validation
 - **PostgreSQL** - Database (optional)
+- **Render** - Hosting backend
+- **Express Rate Limiting** - 
 
 ### Build & Deployment
 - **Vite** - Frontend bundler
@@ -87,6 +91,7 @@ GitHub Secrets provide the most secure way to handle environment variables for G
 3. Select "Secrets and variables"
 4. Choose "Actions"
 5. Click "New repository secret"
+6. Write a deploy.yml in .github/workflows/ folder
 
 ```yaml
 name: Deploy React App
