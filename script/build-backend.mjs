@@ -1,4 +1,5 @@
 // script/build-backend.mjs
+// this is a seperate build file for the backend, ran by render
 import { build } from "esbuild";
 import { readFile, mkdir } from "fs/promises";
 
