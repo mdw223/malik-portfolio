@@ -53,6 +53,9 @@ jobs: # the job that occurs when we deploy
 
       - name: Build frontend
         run: npm run build
+      
+      - name: List build output
+        run: ls -la ./dist
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
