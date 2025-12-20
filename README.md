@@ -93,45 +93,91 @@ GitHub Secrets provide the most secure way to handle environment variables for G
 5. Click "New repository secret"
 6. Write a deploy.yml in .github/workflows/ folder
 
+### MY GITHUB ACTIONS deploy.yml
 ```yaml
-name: Deploy React App
+name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
+  push:   # Runs on pushes targeting the default branch
+    branches: ["prod"]
+  pull_request:
+    branches: ["prod"]
 
-jobs:
-  build-and-deploy:
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs: # the job that occurs when we deploy
+  build:
     runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [20.x]
+
     steps:
-      - uses: actions/checkout@v3
-      
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
-      
-      - name: Install Dependencies
-        run: npm install
-      
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Set Environment Variables
         env:
-          REACT_APP_EMAIL_SERVICE_ID: ${{ secrets.REACT_APP_EMAIL_SERVICE_ID }}
-          REACT_APP_EMAIL_TEMPLATE_ID: ${{ secrets.REACT_APP_EMAIL_TEMPLATE_ID }}
-          REACT_APP_EMAIL_PUBLIC_KEY: ${{ secrets.REACT_APP_EMAIL_PUBLIC_KEY }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+          FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          NOTIFICATION_EMAIL: ${{ secrets.NOTIFICATION_EMAIL }}
         run: |
           echo "REACT_APP_EMAIL_SERVICE_ID=$REACT_APP_EMAIL_SERVICE_ID" >> .env.production
           echo "REACT_APP_EMAIL_TEMPLATE_ID=$REACT_APP_EMAIL_TEMPLATE_ID" >> .env.production
           echo "REACT_APP_EMAIL_PUBLIC_KEY=$REACT_APP_EMAIL_PUBLIC_KEY" >> .env.production
+
+      - name: Build frontend
+        run: |
+          npm run build:pages
       
-      - name: Build
-        run: npm run build
-      
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: List build output
+        run: ls -la ./dist/public
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifacts
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          path: './dist/public'           # Upload public folder
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    runs-on: ubuntu-latest
+    needs: build
+    
+    if: github.event_name == 'push' && github.ref == 'refs/heads/prod'
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
 ```
 
 ### Development
@@ -352,7 +398,7 @@ For a complete deployment with backend:
 5. Configure deployment settings:
    Branch: Usually main or master
    Root Directory: /backend (if applicable)
-   Build Command: npm install
+   Build Command: npm install && npm run build:backend
    Start Command: npm start
 6. Add environment varibles 
 
