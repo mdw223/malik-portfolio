@@ -24,7 +24,7 @@ export const projects: Project[] = [
     id: "1",
     title: "Calendly API Endpoint Security",
     description: "Developed a complete Calendly integration with secure signature verification for an enterprise Axiom Workspace CRM.",
-    image: "https://i9.ytimg.com/vi/eilpiJ-940U/mqdefault.jpg?v=69348dc6&sqp=CLTIlsoG&rs=AOn4CLATQpoF4TE6EfS4lnMgLH4ZHxqTIg",
+    image: "https://i.ytimg.com/vi/eilpiJ-940U/maxresdefault.jpg",
     demoUrl: "https://youtu.be/eilpiJ-940U",
     githubUrl: "",
     blogUrl: "",
@@ -34,7 +34,7 @@ export const projects: Project[] = [
     id: "2",
     title: "Gmail Pubsub Api Endpoint Security",
     description: "Robust security for Axiom Workspace CRM's Gmail Pubsub Api endpoint, protecting our real-time email notifications.",
-    image: "https://i9.ytimg.com/vi/rWLARWdb5Cg/mqdefault.jpg?v=69338907&sqp=CIzNlsoG&rs=AOn4CLBTjLdmm-jV6LSwYonhIJ51SPKYPg",
+    image: "https://i.ytimg.com/vi/rWLARWdb5Cg/maxresdefault.jpg",
     demoUrl: "https://youtu.be/rWLARWdb5Cg",
     githubUrl: "",
     blogUrl: "",
@@ -44,7 +44,7 @@ export const projects: Project[] = [
     id: "3",
     title: "Gmail Integration",
     description: "implemented Gmail API in Axiom Workspace, from sending emails, contact syncing, database, pubsub, Oauth2, and hangfire.",
-    image: "https://i9.ytimg.com/vi_webp/jEafSZkSwiw/mq1.webp?sqp=CLjPlsoG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGBMgEyh_MA8=&rs=AOn4CLBGOCKYuaRzY_aSjWn-41DEuH0xQg",
+    image: "https://i.ytimg.com/vi/jEafSZkSwiw/maxresdefault.jpg",
     demoUrl: "https://youtu.be/jEafSZkSwiw",
     linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_gmail-api-full-stack-demo-activity-7400713996967833600-adt6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg"
   },
@@ -71,7 +71,7 @@ export const projects: Project[] = [
     id: "6",
     title: "Calendly Integration",
     description: "Built complete Calendly integration with webhook subscription management with comprehensive event lifecycle management (creation, rescheduling, cancellation)",
-    image: "https://i9.ytimg.com/vi/jxsZmXSKSRE/mqdefault.jpg?v=68efd94e&sqp=CJDUlsoG&rs=AOn4CLDCl9KZ8P4I45eyLtz-na_fUltChw",
+    image: "https://i.ytimg.com/vi/jxsZmXSKSRE/maxresdefault.jpg",
     demoUrl: "https://youtu.be/jxsZmXSKSRE",
     blogUrl: "/blog/calendly-web-app-integration"
   },
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     id: "7",
     title: "Enterprise CRM Favorites System Implementation",
     description: "Developed a multi-entity favorites system with scalable, full-stack architecture and an intuitive star-based UI for improved user interaction.",
-    image: "https://i9.ytimg.com/vi_webp/-unKlswz4zU/mq3.webp?sqp=CLzWlsoG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGMgYyhjMA8=&rs=AOn4CLBFDZELOKIpidOI62-80LTbGBfYXw",
+    image: "https://i.ytimg.com/vi/-unKlswz4zU/maxresdefault.jpg",
     demoUrl: "https://youtu.be/-unKlswz4zU",
     linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_axiomsoftware-fullstackdevelopment-angular-activity-7358667071192190976-6owY?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg"
   }
