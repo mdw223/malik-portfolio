@@ -78,6 +78,57 @@ A modern, full-featured personal portfolio website built with React, TypeScript,
    NOTIFICATION_EMAIL=your_email
    ```
 
+### GitHub Pages Deployment for React with Environment Variables (Sample GitHub Actions Workflow with Secrets)
+
+GitHub Secrets provide the most secure way to handle environment variables for GitHub Pages
+
+1. Go to your repository
+2. Click "Settings"
+3. Select "Secrets and variables"
+4. Choose "Actions"
+5. Click "New repository secret"
+
+```yaml
+name: Deploy React App
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install Dependencies
+        run: npm install
+      
+      - name: Set Environment Variables
+        env:
+          REACT_APP_EMAIL_SERVICE_ID: ${{ secrets.REACT_APP_EMAIL_SERVICE_ID }}
+          REACT_APP_EMAIL_TEMPLATE_ID: ${{ secrets.REACT_APP_EMAIL_TEMPLATE_ID }}
+          REACT_APP_EMAIL_PUBLIC_KEY: ${{ secrets.REACT_APP_EMAIL_PUBLIC_KEY }}
+        run: |
+          echo "REACT_APP_EMAIL_SERVICE_ID=$REACT_APP_EMAIL_SERVICE_ID" >> .env.production
+          echo "REACT_APP_EMAIL_TEMPLATE_ID=$REACT_APP_EMAIL_TEMPLATE_ID" >> .env.production
+          echo "REACT_APP_EMAIL_PUBLIC_KEY=$REACT_APP_EMAIL_PUBLIC_KEY" >> .env.production
+      
+      - name: Build
+        run: npm run build
+      
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+```
+
 ### Development
 
 Run the development server:
