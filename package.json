@@ -5,9 +5,9 @@
   "license": "MIT",
   "homepage": "https://mdw223.github.io/malik-portfolio/",
   "scripts": {
-    "build": "npm run build:frontend && npm run build:backend",
+    "build": "tsx script/build.ts",
     "build:frontend": "vite build",
-    "build:backend": "esbuild server/index.ts --bundle --platform=node --target=node20 --format=cjs --outfile=dist/index.cjs --external:@node-rs/*",
+    "build:backend": "tsx script/build.ts",
     "build:pages": "npm run build:frontend",
     "start": "cross-env NODE_ENV=production node dist/index.cjs",
     "dev": "cross-env NODE_ENV=development tsx watch server/index.ts",

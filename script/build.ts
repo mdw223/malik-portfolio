@@ -62,7 +62,19 @@ async function buildAll() {
       "process.env.NODE_ENV": '"production"',
     },
     minify: true,
-    external: externals,
+    external: [
+      ...externals,
+      // Explicitly exclude Vite and build tools
+      "vite",
+      "vite.config.ts",
+      "@vitejs/*",
+      "@replit/*",
+      "esbuild",
+      "@babel/*",
+      "lightningcss",
+      // Exclude anything that looks like a config file
+      "*.config.*",
+    ],
     logLevel: "info",
   });
 }
