@@ -1,4 +1,4 @@
-# John Doe - Personal Portfolio Website
+# Malik Wensman - Personal Portfolio Website
 
 A modern, full-featured personal portfolio website built with React, TypeScript, and Express. Showcases projects, work experience, resume, blog posts, and provides a contact form.
 

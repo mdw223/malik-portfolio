@@ -3,12 +3,38 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactMessageSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
+import { Resend } from "resend"; //https://resend.com/api-keys
+import { contactRateLimiter } from "./middleware/rateLimiter";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+async function sendEmailNotification(data: {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}) {
+  await resend.emails.send({
+    from: `Contact Form <onboarding@resend.dev>`,
+    to: process.env.NOTIFICATION_EMAIL!,
+    replyTo: data.email,
+    subject: `New Contact Form: ${data.subject}`,
+    html: `
+      <h2>New Contact Form Submission</h2>
+      <p><strong>Name:</strong> ${data.name}</p>
+      <p><strong>Email:</strong> ${data.email}</p>
+      <p><strong>Subject:</strong> ${data.subject}</p>
+      <h3>Message:</h3>
+      <p>${data.message.replace(/\n/g, "<br>")}</p>
+    `,
+  });
+}
 
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  app.post("/api/contact", async (req, res) => {
+  app.post("/api/contact", contactRateLimiter, async (req, res) => {
     try {
       const result = insertContactMessageSchema.safeParse(req.body);
       
@@ -28,6 +54,15 @@ export async function registerRoutes(
         subject: message.subject,
         createdAt: message.createdAt,
       });
+
+      // Send email notification
+      try {
+        await sendEmailNotification(result.data);
+        console.log("Email notification sent successfully");
+      } catch (emailError) {
+        console.error("Failed to send email notification:", emailError);
+        // Don't fail the request if email fails - message is still saved
+      }
 
       res.status(201).json({ 
         success: true, 
