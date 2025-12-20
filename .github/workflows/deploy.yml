@@ -53,12 +53,10 @@ jobs: # the job that occurs when we deploy
 
       - name: Build frontend
         run: |
-          cd client
-          npm run build
           npm run build
       
       - name: List build output
-        run: ls -la ./dist
+        run: ls -la ./public
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -66,7 +64,7 @@ jobs: # the job that occurs when we deploy
       - name: Upload artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './client/dist'           # Upload dist folder
+          path: './dist/public'           # Upload public folder
 
   deploy:
     environment:
