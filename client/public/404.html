@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script>
+      var path = window.location.pathname;
+      var base = '/malik-portfolio';
+      // Redirect to index.html with the path preserved
+      window.location.replace(base + '/?redirect=' + encodeURIComponent(path.replace(base, '')));
+    </script>
+  </head>
+  <body></body>
+</html>
