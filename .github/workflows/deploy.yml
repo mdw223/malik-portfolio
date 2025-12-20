@@ -56,7 +56,7 @@ jobs: # the job that occurs when we deploy
           npm run build
       
       - name: List build output
-        run: ls -la ./public
+        run: ls -la ./dist/public
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
