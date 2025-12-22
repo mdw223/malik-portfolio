@@ -1,7 +1,7 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:   # Runs on pushes targeting the default branch
+  push: # Runs on pushes targeting the default branch
     branches: ["prod"]
   pull_request:
     branches: ["prod"]
@@ -21,7 +21,7 @@ concurrency:
 jobs: # the job that occurs when we deploy
   build:
     runs-on: ubuntu-latest
-    
+
     strategy:
       matrix:
         node-version: [20.x]
@@ -34,7 +34,7 @@ jobs: # the job that occurs when we deploy
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -46,6 +46,7 @@ jobs: # the job that occurs when we deploy
           FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           NOTIFICATION_EMAIL: ${{ secrets.NOTIFICATION_EMAIL }}
+          VITE_RENDER_URL: ${{ secrets.VITE_RENDER_URL }}
         run: |
           echo "REACT_APP_EMAIL_SERVICE_ID=$REACT_APP_EMAIL_SERVICE_ID" >> .env.production
           echo "REACT_APP_EMAIL_TEMPLATE_ID=$REACT_APP_EMAIL_TEMPLATE_ID" >> .env.production
@@ -54,7 +55,7 @@ jobs: # the job that occurs when we deploy
       - name: Build frontend
         run: |
           npm run build:pages
-      
+
       - name: List build output
         run: ls -la ./dist/public
 
@@ -64,16 +65,16 @@ jobs: # the job that occurs when we deploy
       - name: Upload artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist/public'           # Upload public folder
+          path: "./dist/public" # Upload public folder
 
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    
+
     runs-on: ubuntu-latest
     needs: build
-    
+
     if: github.event_name == 'push' && github.ref == 'refs/heads/prod'
 
     steps:
