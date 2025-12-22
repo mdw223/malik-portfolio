@@ -1,6 +1,6 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 
-const API_BASE_URL = process.env.RENDER_URL; // make API base URL to point to Render
+const API_BASE_URL = import.meta.env.VITE_RENDER_URL; // make API base URL to point to Render
 
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {

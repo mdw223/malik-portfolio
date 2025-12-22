@@ -14,6 +14,10 @@ import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { blogPosts } from "@/lib/data";
 import type { BlogPost } from "@shared/schema";
 
+const sortPostsById = (posts: BlogPost[]): BlogPost[] => {
+  return [...posts].sort((a, b) => parseInt(b.id) - parseInt(a.id));
+};
+
 function BlogSidebar({
   posts,
   searchQuery,
@@ -27,6 +31,7 @@ function BlogSidebar({
   selectedPostId: string | null;
   onSelectPost: (post: BlogPost) => void;
 }) {
+  posts = sortPostsById(posts);
   const filteredPosts = useMemo(() => {
     if (!searchQuery.trim()) return posts;
     const query = searchQuery.toLowerCase();
@@ -247,7 +252,7 @@ export default function Blog() {
 
   useEffect(() => {
     if (matchSlug && params?.slug) {
-      const post = blogPosts.reverse().find((p) => p.slug === params.slug);
+      const post = blogPosts.find((p) => p.slug === params.slug);
       if (post) {
         setSelectedPost(post);
         setNotFound(false);
@@ -256,7 +261,8 @@ export default function Blog() {
         setNotFound(true);
       }
     } else {
-      setSelectedPost(blogPosts[0] || null);
+      const sortedPosts = sortPostsById(blogPosts);
+      setSelectedPost(sortedPosts[0] || null);
       setNotFound(false);
     }
   }, [matchSlug, params?.slug]);

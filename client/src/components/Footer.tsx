@@ -12,7 +12,7 @@ export function Footer() {
           <div className="flex items-center gap-4">
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
               {/* <span className="text-primary-foreground font-bold text-sm">MW</span> */}
-              <img src="/favicon.png" alt="" />
+              <img src="./favicon.png" alt="" />
             </div>
             <p className="text-sm text-muted-foreground">
               {currentYear} {personalInfo.name}. All rights reserved.
