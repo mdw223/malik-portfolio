@@ -251,6 +251,13 @@ export default function Blog() {
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, []);
+
+  useEffect(() => {
     if (matchSlug && params?.slug) {
       const post = blogPosts.find((p) => p.slug === params.slug);
       if (post) {
