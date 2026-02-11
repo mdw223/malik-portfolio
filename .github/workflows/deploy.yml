@@ -52,6 +52,13 @@ jobs: # the job that occurs when we deploy
           echo "REACT_APP_EMAIL_TEMPLATE_ID=$REACT_APP_EMAIL_TEMPLATE_ID" >> .env.production
           echo "REACT_APP_EMAIL_PUBLIC_KEY=$REACT_APP_EMAIL_PUBLIC_KEY" >> .env.production
 
+      - name: Copy index.html from client to dist
+        run: |
+          mkdir -p dist
+          cp client/index.html dist/
+          echo "Copied index.html to dist folder"
+          ls -la dist/
+
       - name: Build frontend
         run: |
           npm run build:pages
