@@ -80,7 +80,7 @@ export function ResumeSection() {
                   View Full Resume
                 </Button>
               </a>
-              <a href={resumeUrl} download="John_Doe_Resume.pdf" data-testid="link-download-resume">
+              <a href={resumeUrl} download="Malik Wensman - Technical Resume.pdf" data-testid="link-download-resume">
                 <Button size="lg" variant="outline" className="gap-2 w-full sm:w-auto">
                   <Download className="w-5 h-5" />
                   Download PDF
