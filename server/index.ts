@@ -17,7 +17,7 @@ declare module "http" {
 app.use(cors({
   origin: [
     process.env.FRONTEND_URL || 'http://localhost:3000', // Local development
-    'https://your-render-frontend-url.app', // Render frontend URL
+    'https://mdw223.github.io', // GitHub Pages
     // Add any other allowed origins
   ],
   credentials: true // If you're using sessions or cookies
