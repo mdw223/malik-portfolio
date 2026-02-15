@@ -42,7 +42,7 @@ A modern, full-featured personal portfolio website built with React, TypeScript,
 - **Zod** - Request validation
 - **PostgreSQL** - Database (optional)
 - **Render** - Hosting backend
-- **Express Rate Limiting** - 
+- **Express Rate Limiting** 
 
 ### Build & Deployment
 - **Vite** - Frontend bundler
@@ -80,6 +80,7 @@ A modern, full-featured personal portfolio website built with React, TypeScript,
    SESSION_SECRET=your_session_secret
    RESEND_API_KEY=_your_resend_api_key
    NOTIFICATION_EMAIL=your_email
+   VITE_RENDER_URL=your_backend_deployment_url
    ```
 
 ### GitHub Pages Deployment for React with Environment Variables (Sample GitHub Actions Workflow with Secrets)
@@ -98,7 +99,7 @@ GitHub Secrets provide the most secure way to handle environment variables for G
 name: Deploy to GitHub Pages
 
 on:
-  push:   # Runs on pushes targeting the default branch
+  push: # Runs on pushes targeting the default branch
     branches: ["prod"]
   pull_request:
     branches: ["prod"]
@@ -118,7 +119,7 @@ concurrency:
 jobs: # the job that occurs when we deploy
   build:
     runs-on: ubuntu-latest
-    
+
     strategy:
       matrix:
         node-version: [20.x]
@@ -131,7 +132,7 @@ jobs: # the job that occurs when we deploy
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -143,15 +144,24 @@ jobs: # the job that occurs when we deploy
           FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           NOTIFICATION_EMAIL: ${{ secrets.NOTIFICATION_EMAIL }}
+          VITE_RENDER_URL: ${{ secrets.VITE_RENDER_URL }}
         run: |
           echo "REACT_APP_EMAIL_SERVICE_ID=$REACT_APP_EMAIL_SERVICE_ID" >> .env.production
           echo "REACT_APP_EMAIL_TEMPLATE_ID=$REACT_APP_EMAIL_TEMPLATE_ID" >> .env.production
           echo "REACT_APP_EMAIL_PUBLIC_KEY=$REACT_APP_EMAIL_PUBLIC_KEY" >> .env.production
+          echo "VITE_RENDER_URL=$VITE_RENDER_URL" >> .env.production
+
+      - name: Copy index.html from client to dist
+        run: |
+          mkdir -p dist
+          cp client/index.html dist/
+          echo "Copied index.html to dist folder"
+          ls -la dist/
 
       - name: Build frontend
         run: |
           npm run build:pages
-      
+
       - name: List build output
         run: ls -la ./dist/public
 
@@ -161,23 +171,22 @@ jobs: # the job that occurs when we deploy
       - name: Upload artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist/public'           # Upload public folder
+          path: "./dist/public" # Upload public folder
 
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    
+
     runs-on: ubuntu-latest
     needs: build
-    
+
     if: github.event_name == 'push' && github.ref == 'refs/heads/prod'
 
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
 ```
 
 ### Development
