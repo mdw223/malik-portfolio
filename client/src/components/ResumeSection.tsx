@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { FileText, Download, ExternalLink } from "lucide-react";
 
 export function ResumeSection() {
-  const resumeUrl = "./Malik Wensman - Technical Resume.pdf";
+  const resumeUrl = "./Malik Wensman - Software Resume.pdf";
 
   return (
     <section id="resume" className="py-20 px-4 sm:px-6 bg-muted/30" data-testid="section-resume">
