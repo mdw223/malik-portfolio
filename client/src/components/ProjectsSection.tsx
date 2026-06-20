@@ -1,6 +1,6 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, FileText, Linkedin } from "lucide-react";
+import { Github, FileText, Linkedin, Globe, Play } from "lucide-react";
 import { Link } from "wouter";
 import { projects } from "@/lib/data";
 
@@ -36,6 +36,19 @@ export function ProjectsSection() {
                 </p>
               </CardContent>
               <CardFooter className="p-6 pt-0 flex flex-wrap gap-2">
+                {project.liveWebsiteUrl && (
+                  <a
+                    href={project.liveWebsiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid={`link-website-${project.id}`}
+                  >
+                    <Button size="sm" variant="default" className="gap-1.5">
+                      <Globe className="w-4 h-4" />
+                      Website
+                    </Button>
+                  </a>
+                )}
                 {project.demoUrl && (
                   <a
                     href={project.demoUrl}
@@ -43,9 +56,9 @@ export function ProjectsSection() {
                     rel="noopener noreferrer"
                     data-testid={`link-demo-${project.id}`}
                   >
-                    <Button size="sm" variant="default" className="gap-1.5">
-                      <ExternalLink className="w-4 h-4" />
-                      Demo
+                    <Button size="sm" variant={project.liveWebsiteUrl ? "outline" : "default"} className="gap-1.5">
+                      <Play className="w-4 h-4" />
+                      Video
                     </Button>
                   </a>
                 )}

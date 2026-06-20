@@ -245,7 +245,7 @@ portfolio/
 │   │   ├── hooks/          # Custom React hooks
 │   │   ├── App.tsx         # Main app component
 │   │   └── index.css       # Global styles
-│   ├── public/             # Static assets (includes resume.pdf)
+│   ├── public/             # Static assets (resume PDF, 404.html)
 │   └── index.html          # HTML entry point
 ├── server/                 # Express backend
 |   |── middleware/
@@ -306,31 +306,203 @@ portfolio/
 - **esbuild**: Production server bundling
 - **Replit Plugins**: Dev banner, cartographer, runtime error overlay
 
+## Content Source of Truth
+
+All portfolio content lives in the repo as static data — no database or admin panel required for updates.
+
+| Content | File | What to edit |
+|---------|------|--------------|
+| Name, title, bio, social links | [`client/src/lib/data.ts`](client/src/lib/data.ts) → `personalInfo` | Profile text and links |
+| Featured projects | [`client/src/lib/data.ts`](client/src/lib/data.ts) → `projects` | Project cards on homepage |
+| Work experience | [`client/src/lib/data.ts`](client/src/lib/data.ts) → `experiences` | Experience timeline |
+| Blog posts | [`client/src/lib/data.ts`](client/src/lib/data.ts) → `blogPosts` | Full post content (markdown) |
+| Resume PDF | [`client/public/Malik Wensman - Technical Resume.pdf`](client/public/) | Replace the PDF file |
+| Resume preview card | [`client/src/components/ResumeSection.tsx`](client/src/components/ResumeSection.tsx) | Hardcoded preview text (optional) |
+| Field types & validation | [`shared/schema.ts`](shared/schema.ts) | `Project`, `Experience`, `BlogPost`, `PersonalInfo` interfaces |
+
+After any content change: `npm run dev` to preview locally, then push to `prod` to deploy via GitHub Actions.
+
+---
+
+## Dynamic Portfolio Plan (Phase 1 & Phase 2)
+
+A full custom CMS (login, database, VPS admin panel) is **not needed right now**. These phases give you fast, consistent updates without that overhead.
+
+### Phase 1: Structured Manual Updates (do this now)
+
+**Goal:** Update resume, text, projects, and blogs in under 10 minutes with a repeatable checklist.
+
+**What you build:**
+- Use the [Quick Update Playbook](#quick-update-playbook) below for every change
+- Keep one canonical entry template for projects and blogs (copy-paste, fill in fields)
+- Optional: Obsidian checklist in your vault to capture project/blog details before editing `data.ts`
+
+**What you skip for now:**
+- Admin login page
+- Database
+- VPS / nginx routing for portfolio editing
+
+**Time budget:** 1–4 hours to learn the workflow once; ~5–10 min per update after that.
+
+### Phase 2: Guided Automation (next step)
+
+**Goal:** Remove "blank page" friction when starting a new project or blog entry.
+
+**What you add:**
+1. **Cursor skill or command** — asks guided questions (title, stack, impact, links, tags) and outputs a ready-to-paste block for `data.ts`
+2. **Obsidian template** — same questions as a form you fill in Obsidian, then paste into the repo
+3. **Optional CLI script** (e.g. `npm run content:new-project`) — prompts in terminal and appends a validated entry to `data.ts`
+
+**Still static-first:** Generated content commits to git; GitHub Pages deploys as today. No backend required unless Phase 3 triggers apply.
+
+### Phase 3 (later): When to upgrade to CMS / backend
+
+Only invest in admin panel + database + VPS when **2 or more** of these are true:
+
+- You update content more than 3× per week consistently
+- You need in-browser image uploads (not URL links)
+- You want edit history / rollback in a UI (not git)
+- Someone else needs to edit content without touching the repo
+- Managing `data.ts` file size or merge conflicts becomes painful
+
+Until then, file-based updates + guided automation are faster and cheaper to maintain.
+
+---
+
+## Quick Update Playbook
+
+Use this every time you ship something new. Order matters for the fastest path.
+
+### Update Resume in under 5 minutes
+
+1. Export your latest resume as PDF.
+2. Replace [`client/public/Malik Wensman - Technical Resume.pdf`](client/public/) (keep the exact filename — links depend on it).
+3. Optionally sync the preview card in [`client/src/components/ResumeSection.tsx`](client/src/components/ResumeSection.tsx) (name, title, skills snippet).
+4. Run `npm run dev` → open `#resume` → click **View Full Resume** and **Download PDF**.
+5. Push to `prod` when links work.
+
+### Update Site Text in under 5 minutes
+
+Edit `personalInfo` in [`client/src/lib/data.ts`](client/src/lib/data.ts):
+
+```typescript
+export const personalInfo: PersonalInfo = {
+  name: "...",
+  title: "...",
+  bio: "...",
+  profileImage: "https://...",
+  bullets: ["...", "..."],
+  linkedIn: "https://...",
+  github: "https://...",
+  youtube: "https://...",
+  calendlyUrl: "https://...",
+  email: "...",
+  axiomWorkspaceUrl: "https://..."
+};
+```
+
+**Checklist:**
+- [ ] `bio` is one clear sentence (what you do + current focus)
+- [ ] `bullets` are scannable (role, school, interests)
+- [ ] All URLs open correctly
+- [ ] Preview on mobile (hero + about section)
+
+For experience timeline text, edit the `experiences` array in the same file.
+
+### Add or Update a Featured Project
+
+Add an entry to the `projects` array in [`client/src/lib/data.ts`](client/src/lib/data.ts). Use the next unused `id` (string).
+
+**Template:**
+
+```typescript
+{
+  id: "8",
+  title: "Project Name",
+  description: "One sentence: what you built and the outcome.",
+  image: "https://...",           // thumbnail URL (YouTube maxres, GitHub social, etc.)
+  demoUrl: "https://youtu.be/...",         // optional — video demo (YouTube, etc.)
+  liveWebsiteUrl: "https://...",           // optional — deployed site
+  githubUrl: "https://...",       // optional
+  blogUrl: "/blog/your-slug",     // optional — must match a blog slug if set
+  linkedInPostUrl: "https://..."  // optional
+}
+```
+
+**Checklist:**
+- [ ] `description` states impact, not just tech stack
+- [ ] `image` loads (test URL in browser)
+- [ ] At least one of: `liveWebsiteUrl`, `demoUrl`, `githubUrl`, `blogUrl`, `linkedInPostUrl`
+- [ ] New projects appear at the top of the array if you want them featured first
+- [ ] Card renders on homepage projects section
+
+### Add a Blog Post
+
+Add an entry to the `blogPosts` array in [`client/src/lib/data.ts`](client/src/lib/data.ts).
+
+**Template:**
+
+```typescript
+{
+  id: "unique-id",
+  title: "Post Title",
+  slug: "url-friendly-slug",      // lowercase, hyphens — used in /blog/slug
+  excerpt: "1–2 sentence summary for the blog list.",
+  content: `# Heading
+
+Your markdown body here. Supports GFM and code blocks.`,
+  createdAt: "2026-06-20",        // YYYY-MM-DD
+  tags: ["tag1", "tag2"]
+}
+```
+
+**Checklist:**
+- [ ] `slug` is unique and matches any `blogUrl` on linked projects (e.g. `/blog/my-slug`)
+- [ ] `excerpt` works as a standalone preview
+- [ ] `createdAt` is correct for sort order
+- [ ] `tags` are lowercase and consistent with existing posts
+- [ ] Visit `/blog/your-slug` locally before deploy
+
+### Pre-Deploy Quality Checklist
+
+Run through this before pushing to `prod`:
+
+- [ ] `npm run dev` — no console errors
+- [ ] Homepage: hero, projects, experience, resume, contact all look correct
+- [ ] New blog post opens and markdown renders (headings, code blocks, links)
+- [ ] External links open in new tab where expected
+- [ ] Mobile layout spot-check (nav, project cards, blog)
+- [ ] `npm run build:pages` succeeds locally if you changed structure
+
+**Deploy:** push to `prod` branch → GitHub Actions builds and publishes to GitHub Pages.
+
+### Repeatable AI Prompt (Phase 2 starter)
+
+Paste this into Cursor when you finish a project and want a consistent entry:
+
+```
+I'm updating my portfolio. Ask me these fields one at a time, then output:
+1) a projects[] entry for client/src/lib/data.ts
+2) an optional blogPosts[] entry if I want a write-up
+
+Fields: title, one-line description, image URL, demo URL, GitHub URL, LinkedIn post URL, blog slug (optional), tech stack, key outcome, tags, post excerpt, post markdown outline.
+
+Match existing style in data.ts. Use the next project id. Slug must be url-safe.
+```
+
+Save this as a Cursor skill or Obsidian template in Phase 2 so you never retype it.
+
+---
+
 ## Customization
 
 ### Update Personal Information
 
-Edit `client/src/lib/data.ts` to customize:
-- Your name, title, and bio
-- Profile image URL
-- Social media links
-- Projects and experiences
-- Blog posts
+See [Update Site Text](#update-site-text-in-under-5-minutes) and edit `personalInfo` in [`client/src/lib/data.ts`](client/src/lib/data.ts).
 
 ### Add Blog Posts
 
-Add new blog posts to the `blogPosts` array in `client/src/lib/data.ts`:
-```typescript
-{
-  id: "unique-id",
-  title: "Your Post Title",
-  slug: "your-post-slug",
-  excerpt: "Short description...",
-  content: "# Your markdown content here...",
-  createdAt: "2024-12-19",
-  tags: ["tag1", "tag2"]
-}
-```
+See [Add a Blog Post](#add-a-blog-post) for the full template and checklist.
 
 ### Customize Styling
 
