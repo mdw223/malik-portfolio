@@ -49,6 +49,7 @@ export interface Project {
   description: string;
   image: string;
   demoUrl?: string;
+  liveWebsiteUrl?: string;
   githubUrl?: string;
   blogUrl?: string;
   linkedInPostUrl?: string;

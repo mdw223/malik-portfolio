@@ -412,7 +412,8 @@ Add an entry to the `projects` array in [`client/src/lib/data.ts`](client/src/li
   title: "Project Name",
   description: "One sentence: what you built and the outcome.",
   image: "https://...",           // thumbnail URL (YouTube maxres, GitHub social, etc.)
-  demoUrl: "https://...",         // optional — live demo or video
+  demoUrl: "https://youtu.be/...",         // optional — video demo (YouTube, etc.)
+  liveWebsiteUrl: "https://...",           // optional — deployed site
   githubUrl: "https://...",       // optional
   blogUrl: "/blog/your-slug",     // optional — must match a blog slug if set
   linkedInPostUrl: "https://..."  // optional
@@ -422,7 +423,7 @@ Add an entry to the `projects` array in [`client/src/lib/data.ts`](client/src/li
 **Checklist:**
 - [ ] `description` states impact, not just tech stack
 - [ ] `image` loads (test URL in browser)
-- [ ] At least one of: `demoUrl`, `githubUrl`, `blogUrl`, `linkedInPostUrl`
+- [ ] At least one of: `liveWebsiteUrl`, `demoUrl`, `githubUrl`, `blogUrl`, `linkedInPostUrl`
 - [ ] New projects appear at the top of the array if you want them featured first
 - [ ] Card renders on homepage projects section
 

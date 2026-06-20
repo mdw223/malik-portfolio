@@ -1,4 +1,7 @@
 import type { Project, Experience, BlogPost, PersonalInfo } from "@shared/schema";
+import whisperBlogContent from "../content/faster-whisper-push-to-talk-setup-on-linux.md?raw";
+import cursorfulBlogContent from "../content/how-i-implemented-a-linux-alternative-to-cursorful-screen-recording.md?raw";
+
 
 export const personalInfo: PersonalInfo = {
   name: "Malik Wensman",
@@ -8,7 +11,7 @@ export const personalInfo: PersonalInfo = {
   bullets: [
     "Full Stack Software Enginer at Axiom Software",
     "Senior in Computer Science, North Carolina State University",
-    "Passionate about Ethical Tech, AI, and Cybersecurity",
+    "Passionate about Ethical AI, Automation, and Cybersecurity",
     "Building impactful solutions"
   ],
   linkedIn: "https://www.linkedin.com/in/malik-wensman/",
@@ -21,68 +24,96 @@ export const personalInfo: PersonalInfo = {
 
 export const projects: Project[] = [
   {
-    id: "1",
+    id: "11",
+    title: "blinkDoc",
+    description: "Secure PDF viewer DRM for LMS integrations. PDFs are rasterized server-side into watermarked 256×256 tiles and served through a sandboxed iframe—the raw PDF never reaches the browser.",
+    image: "/blinkdoc.png",
+    liveWebsiteUrl: "https://dev.samawy.org/",
+    githubUrl: "https://github.com/mdw223/blinkDoc",
+  },
+  {
+    id: "10",
+    title: "Islamic Calendar Sync",
+    description: "Full-stack PWA that helps Muslims stay in sync with the Islamic calendar—generate Hijri events, export .ics files, or subscribe to live calendar feeds with OAuth, offline IndexedDB, and Docker deployment.",
+    image: "/ics.png",
+    liveWebsiteUrl: "https://www.islamiccalendarsync.com/",
+    githubUrl: "https://github.com/mdw223/Islamic-Calendar-Sync",
+  },
+  {
+    id: "9",
+    title: "Local Whisper Push-to-Talk on Linux",
+    description: "Built offline voice-to-text on Linux with faster-whisper: hotkey to record, transcribe locally, and deliver text via clipboard on Wayland or auto-paste on X11—no API costs.",
+    image: "https://i.ytimg.com/vi/dNKCJZ8kjkw/maxresdefault.jpg",
+    demoUrl: "https://youtu.be/dNKCJZ8kjkw?si=BAJBM1K4HlXzveOU",
+    blogUrl: "/blog/faster-whisper-push-to-talk-setup-on-linux",
+    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_linux-opensource-whisper-ugcPost-7474239216336474112-2rx6/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg"
+  },
+  {
+    id: "8",
+    title: "Linux Autozoom Screen Recording",
+    description: "Found a Cursorful-style autozoom workflow on Linux after weeks of Wayland/X11 troubleshooting—Screenix for native desktop demos and Cursorfly for browser recordings.",
+    image: "/cursorfly.png",
+    blogUrl: "/blog/how-i-implemented-a-linux-alternative-to-cursorful-screen-recording",
+    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_linux-wayland-x11-share-7474235842400694272-5-n8/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg",
+  },
+  {
+    id: "7",
     title: "Calendly API Endpoint Security",
     description: "Developed a complete Calendly integration with secure signature verification for an enterprise Axiom Workspace CRM.",
     image: "https://i.ytimg.com/vi/eilpiJ-940U/maxresdefault.jpg",
     demoUrl: "https://youtu.be/eilpiJ-940U",
-    githubUrl: "",
-    blogUrl: "",
-    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_calendly-api-endpoint-security-activity-7403165773868986369-z5Wu?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg"
+    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_calendly-api-endpoint-security-activity-7403165773868986369-z5Wu?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg",
   },
   {
-    id: "2",
-    title: "Gmail Pubsub Api Endpoint Security",
-    description: "Robust security for Axiom Workspace CRM's Gmail Pubsub Api endpoint, protecting our real-time email notifications.",
+    id: "6",
+    title: "Gmail Pub/Sub API Endpoint Security",
+    description: "Robust security for Axiom Workspace CRM's Gmail Pub/Sub API endpoint, protecting real-time email notifications.",
     image: "https://i.ytimg.com/vi/rWLARWdb5Cg/maxresdefault.jpg",
     demoUrl: "https://youtu.be/rWLARWdb5Cg",
-    githubUrl: "",
-    blogUrl: "",
-    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_gmail-pubsub-api-endpoint-security-activity-7402886209502609409-8CBX?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg"
+    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_gmail-pubsub-api-endpoint-security-activity-7402886209502609409-8CBX?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg",
   },
   {
-    id: "3",
+    id: "5",
     title: "Gmail Integration",
-    description: "implemented Gmail API in Axiom Workspace, from sending emails, contact syncing, database, pubsub, Oauth2, and hangfire.",
+    description: "Implemented Gmail API in Axiom Workspace—from sending emails and contact syncing to database design, Pub/Sub, OAuth2, and Hangfire.",
     image: "https://i.ytimg.com/vi/jEafSZkSwiw/maxresdefault.jpg",
     demoUrl: "https://youtu.be/jEafSZkSwiw",
-    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_gmail-api-full-stack-demo-activity-7400713996967833600-adt6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg"
+    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_gmail-api-full-stack-demo-activity-7400713996967833600-adt6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg",
   },
   {
     id: "4",
     title: "slice325 Learning Management System",
-    description: "Built a learning management system, leveraged Hugo static site generator with markdown quiz plugins to create a maintainable, no-cost LMS solution at the Making Progress Charity Hackathon.",
+    description: "Built a learning management system with Hugo and markdown quiz plugins to create a maintainable, no-cost LMS at the Making Progress Charity Hackathon.",
     image: "https://slice325.org/wp-content/uploads/2019/05/cropped-SLICE325-Logo-1.png",
     githubUrl: "https://github.com/mdw223/slice325",
-    demoUrl: "https://mdw223.github.io/slice325/",
-    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_hackathon-webdevelopment-lms-activity-7394115962871959552-gxeE?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg"
+    liveWebsiteUrl: "https://mdw223.github.io/slice325/",
+    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_hackathon-webdevelopment-lms-activity-7394115962871959552-gxeE?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg",
   },
   {
-    id: "5",
+    id: "3",
     title: "LangChain AI Chatbot",
     description: "Built a beginner-friendly AI chatbot using LangChain and LangGraph that connects to Google's Gemini AI model for conversational interactions.",
-    image: "https://media.licdn.com/dms/image/sync/v2/D4E27AQEcMLb22Gecbw/articleshare-shrink_480/B4EZqeaH_kIQAo-/0/1764807834965?e=1766768400&v=beta&t=iff_BWlAdmHUpndRWieCvcttnyVnTl1sZrdWoFEIdkM",
-    demoUrl: "",
+    image: "https://media.licdn.com/dms/image/sync/v2/D4E27AQEcMLb22Gecbw/articleshare-shrink_800/B4EZqeaH_kIQAI-/0/1767263009271?e=2147483647&v=beta&t=J0qRucSLIT75A7NI63iWA6SJh85kEd29H7Rx0HepL18",
     githubUrl: "https://github.com/mdw223/langchain_chatbot",
     linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_github-mdw223langchainchatbot-activity-7397050529106780160-A_XX?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg",
-    blogUrl: "/blog/learning-ai-ibm-orlando"
+    blogUrl: "/blog/learning-ai-ibm-orlando",
   },
   {
-    id: "6",
+    id: "2",
     title: "Calendly Integration",
-    description: "Built complete Calendly integration with webhook subscription management with comprehensive event lifecycle management (creation, rescheduling, cancellation)",
+    description: "Built complete Calendly integration with webhook subscription management and comprehensive event lifecycle handling (creation, rescheduling, cancellation).",
     image: "https://i.ytimg.com/vi/jxsZmXSKSRE/maxresdefault.jpg",
     demoUrl: "https://youtu.be/jxsZmXSKSRE",
-    blogUrl: "/blog/calendly-web-app-integration"
+    blogUrl: "/blog/calendly-web-app-integration",
   },
   {
-    id: "7",
-    title: "Enterprise CRM Favorites System Implementation",
-    description: "Developed a multi-entity favorites system with scalable, full-stack architecture and an intuitive star-based UI for improved user interaction.",
+    id: "1",
+    title: "Enterprise CRM Favorites System",
+    description: "Developed a multi-entity favorites system with scalable full-stack architecture and an intuitive star-based UI for improved user interaction.",
     image: "https://i.ytimg.com/vi/-unKlswz4zU/maxresdefault.jpg",
     demoUrl: "https://youtu.be/-unKlswz4zU",
-    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_axiomsoftware-fullstackdevelopment-angular-activity-7358667071192190976-6owY?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg"
-  }
+    linkedInPostUrl: "https://www.linkedin.com/posts/malik-wensman_axiomsoftware-fullstackdevelopment-angular-activity-7358667071192190976-6owY?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEAT0DkBVrs7qFEEM0SXcuYm5yaUhOp2fkg",
+  },
 ];
 
 export const experiences: Experience[] = [
@@ -1393,5 +1424,23 @@ Remember: **Start simple, then scale.** Build the minimum viable agent that solv
 `,
     createdAt: "2025-10-15",
     tags: ["IBM", "AI", "Documentation"]
+  },
+  {
+    id: "4",
+    title: "faster-whisper Push-to-Talk Setup on Linux",
+    slug: "faster-whisper-push-to-talk-setup-on-linux",
+    excerpt: "Set up local, offline voice-to-text on Ubuntu and Linux Mint with faster-whisper—hotkey record, transcribe, and paste with no API costs.",
+    content: whisperBlogContent,
+    createdAt: "2026-06-01",
+    tags: ["Linux", "Whisper", "Automation", "Tutorial"]
+  },
+  {
+    id: "5",
+    title: "How I Found a Linux Alternative to Cursorful Screen Recording",
+    slug: "how-i-implemented-a-linux-alternative-to-cursorful-screen-recording",
+    excerpt: "Weeks of OS changes taught me to validate constraints first—Screenix and Cursorfly solved autozoom when the first AI suggestions could not.",
+    content: cursorfulBlogContent,
+    createdAt: "2026-06-15",
+    tags: ["Linux", "Wayland", "X11", "Screen Recording", "Lessons Learned"]
   },
 ];
