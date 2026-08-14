@@ -28,7 +28,7 @@ export const projects: Project[] = [
     title: "blinkDoc",
     description: "Secure PDF viewer DRM for LMS integrations. PDFs are rasterized server-side into watermarked 256×256 tiles and served through a sandboxed iframe—the raw PDF never reaches the browser.",
     image: "/blinkdoc.png",
-    liveWebsiteUrl: "https://dev.samawy.org/",
+    liveWebsiteUrl: "https://blinkdoc.click/",
     githubUrl: "https://github.com/mdw223/blinkDoc",
   },
   {
