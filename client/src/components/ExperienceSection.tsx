@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { ExternalLink } from "lucide-react";
 import { experiences } from "@/lib/data";
 
 export function ExperienceSection() {
@@ -56,9 +57,21 @@ export function ExperienceSection() {
                         <div>
                           <h3 className="text-lg font-semibold">{experience.position}</h3>
                           <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-                            <span className="font-medium text-foreground/80">
-                              {experience.company}
-                            </span>
+                            {experience.url ? (
+                              <a
+                                href={experience.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-medium text-foreground/80 hover:text-primary inline-flex items-center gap-1 transition-colors"
+                              >
+                                {experience.company}
+                                <ExternalLink className="w-3 h-3" />
+                              </a>
+                            ) : (
+                              <span className="font-medium text-foreground/80">
+                                {experience.company}
+                              </span>
+                            )}
                             <span className="w-1 h-1 rounded-full bg-muted-foreground" />
                             <span>{experience.period}</span>
                           </div>

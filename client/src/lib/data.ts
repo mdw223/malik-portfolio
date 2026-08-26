@@ -5,14 +5,14 @@ import cursorfulBlogContent from "../content/how-i-implemented-a-linux-alternati
 
 export const personalInfo: PersonalInfo = {
   name: "Malik Wensman",
-  title: "Full Stack Developer",
-  bio: "Passionate Senior in Computer Science and software engineer at startup where I build Axiom Workspace, an easy-to-use affordable CRM for small businesses.",
+  title: "AI Agent Developer & Full-Stack Engineer",
+  bio: "Full-stack software engineer with ~1.5 years of hands-on experience in React, Python, and C# architecting and delivering secure, scalable web applications. Proven ability to build real-time API integrations, enterprise CRM features, and offline-first PWAs that drive measurable business outcomes and improve security posture. Ready to tackle complex engineering challenges with a security-first approach and a track record of impactful, production-deployed solutions.",
   profileImage: "https://avatars.githubusercontent.com/u/151095055?v=4",
   bullets: [
-    "Full Stack Software Enginer at Axiom Software",
-    "Senior in Computer Science, North Carolina State University",
-    "Passionate about Ethical AI, Automation, and Cybersecurity",
-    "Building impactful solutions"
+    "AI Agent Developer Intern at MCM Technology",
+    "Freelance Full-Stack Software Engineer",
+    "Senior in Computer Science, NC State University (Graduating December 2026)",
+    "Security-first engineering with impactful, production-deployed solutions"
   ],
   linkedIn: "https://www.linkedin.com/in/malik-wensman/",
   github: "https://github.com/mdw223",
@@ -38,6 +38,13 @@ export const projects: Project[] = [
     image: "/ics.png",
     liveWebsiteUrl: "https://www.islamiccalendarsync.com/",
     githubUrl: "https://github.com/mdw223/Islamic-Calendar-Sync",
+  },
+  {
+    id: "12",
+    title: "NC Triangle Muslims",
+    description: "End-to-end WhatsApp event automation pipeline using n8n and Evolution API to detect, parse, and publish community events to the website automatically—no manual posting required.",
+    image: "/nctrianglemuslims.png",
+    liveWebsiteUrl: "https://www.nctrianglemuslims.org",
   },
   {
     id: "9",
@@ -118,20 +125,40 @@ export const projects: Project[] = [
 
 export const experiences: Experience[] = [
   {
+    id: "4",
+    company: "MCM Technology",
+    position: "AI Agent Developer Intern",
+    logo: "https://media.licdn.com/dms/image/v2/D560BAQHLdw42eDvoGQ/company-logo_200_200/B56Z9IduN4HYAE-/0/1783627179143/mcm_technology_logo?e=1789603200&v=beta&t=OPh4-xP1GBf_zINeceJla5KmPHBxnmVkjN4cJLHbfYQ",
+    period: "Aug 2026 - Present",
+    description: "Building a central PostgreSQL data lake that syncs data from four core business systems (ERP, CRM, HRIS, and internal platform) into one queryable source of truth. Developing system integrations and data pipelines across NetSuite, Salesforce, and Rippling, and designing custom AI agents that answer plain-English questions spanning multiple systems to surface actionable business insights.",
+    url: "https://www.linkedin.com/company/mcm-technology/"
+  },
+  {
+    id: "3",
+    company: "Self-Employed",
+    position: "Consultant Full-Stack Web Developer",
+    logo: "https://media.licdn.com/dms/image/v2/D4E0BAQFAeybBFNgbEw/company-logo_200_200/B4EZ9gfiTpJUAI-/0/1784030307794?e=1789603200&v=beta&t=OoHV5h53mbRE1C5RUQ_wSjiNkthCS74vOtLjgMz04YM",
+    period: "Apr 2026 - Present",
+    description: "Partnering with clients to architect and deliver scalable full-stack applications using React, TypeScript, Python/FastAPI, and PostgreSQL with Docker containerization and CI/CD pipelines. Engineered blinkDoc, a secure PDF viewer DRM system with server-side rasterization, dynamic watermarking, IP-bound JWT sessions, and iframe sandboxing. Designed RESTful APIs with a comprehensive security middleware stack—rate limiting, sanitization, structured logging, CORS hardening, and httpOnly cookie auth.",
+    url: "https://github.com/mdw223"
+  },
+  {
     id: "1",
     company: "Axiom Software",
     position: "Full-Stack Software Developer",
-    logo: "https://media.licdn.com/dms/image/v2/C4E0BAQEgJOq9lM-34Q/company-logo_100_100/company-logo_100_100/0/1630605341915?e=1767830400&v=beta&t=pUcLuD7hA4uvxggdm9iheTPU_pyWjYx_9Uly9Nfocd0",
-    period: "Feb 2025 - Present",
-    description: "Developed a sophisticated CRM enhancement with multi-module integrations using Angular, C#, and SQL Server, featuring advanced webhooks, authentication, and scalable database architectures. Implemented complex features including Google, Microsoft, and Calendly integrations."
+    logo: "https://media.licdn.com/dms/image/v2/C4E0BAQEgJOq9lM-34Q/company-logo_200_200/company-logo_200_200/0/1630605341915?e=1789603200&v=beta&t=IVEJQXJDVLwVcmiXHYkQ4yuuEM-cpPF37pOxK0YJjH8",
+    period: "Feb 2025 - Apr 2026",
+    description: "Built Gmail and Outlook integrations with OAuth 2.0 enabling 1,000+ users to automate email campaigns and achieve real-time synchronization. Delivered enterprise calendar integrations for Google Calendar, Outlook Calendar, and Calendly, allowing users to manage 5,000+ events monthly within the CRM. Implemented Calendly webhooks with HMAC signature verification and authored Jest tests achieving 80%+ code coverage.",
+    url: "https://axiomworkspace.com/"
   },
   {
     id: "2",
     company: "North Carolina State University",
-    position: "Computer Science (BS)",
-    logo: "https://media.licdn.com/dms/image/v2/C4D0BAQGaD7AuaL571Q/company-logo_100_100/company-logo_100_100/0/1645128364859/north_carolina_state_university_logo?e=1767830400&v=beta&t=XoZUnLQ2fIcvOm6wtv1uIfvxVVpb3FWW9IrV9RU4vIs",
-    period: "Aug 2022 - Present",
-    description: "A Senior, focusing on software development, programming languages, database management, and cybersecurity."
+    position: "Computer Science (BS) · GPA: 3.76",
+    logo: "https://media.licdn.com/dms/image/v2/C4D0BAQGaD7AuaL571Q/company-logo_200_200/company-logo_200_200/0/1645128364859/north_carolina_state_university_logo?e=1789603200&v=beta&t=TbUbcHILzd_WN243pC-fnjuF5UxKDjQbvD3wR0ugni8",
+    period: "Aug 2022 - Dec 2026",
+    description: "Senior graduating December 2026, focusing on software development, programming languages, database management, and cybersecurity.",
+    url: "https://www.ncsu.edu/"
   }
 ];
 

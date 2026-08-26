@@ -316,7 +316,7 @@ All portfolio content lives in the repo as static data — no database or admin 
 | Featured projects | [`client/src/lib/data.ts`](client/src/lib/data.ts) → `projects` | Project cards on homepage |
 | Work experience | [`client/src/lib/data.ts`](client/src/lib/data.ts) → `experiences` | Experience timeline |
 | Blog posts | [`client/src/lib/data.ts`](client/src/lib/data.ts) → `blogPosts` | Full post content (markdown) |
-| Resume PDF | [`client/public/Malik Wensman - Technical Resume.pdf`](client/public/) | Replace the PDF file |
+| Resume PDF | [`client/public/Malik_Wensman___Resume (p).pdf`](client/public/) | Replace the PDF file |
 | Resume preview card | [`client/src/components/ResumeSection.tsx`](client/src/components/ResumeSection.tsx) | Hardcoded preview text (optional) |
 | Field types & validation | [`shared/schema.ts`](shared/schema.ts) | `Project`, `Experience`, `BlogPost`, `PersonalInfo` interfaces |
 
@@ -376,7 +376,7 @@ Use this every time you ship something new. Order matters for the fastest path.
 ### Update Resume in under 5 minutes
 
 1. Export your latest resume as PDF.
-2. Replace [`client/public/Malik Wensman - Technical Resume.pdf`](client/public/) (keep the exact filename — links depend on it).
+2. Replace [`client/public/Malik_Wensman___Resume (p).pdf`](client/public/) (keep the exact filename — links depend on it).
 3. Optionally sync the preview card in [`client/src/components/ResumeSection.tsx`](client/src/components/ResumeSection.tsx) (name, title, skills snippet).
 4. Run `npm run dev` → open `#resume` → click **View Full Resume** and **Download PDF**.
 5. Push to `prod` when links work.

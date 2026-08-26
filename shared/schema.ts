@@ -62,6 +62,7 @@ export interface Experience {
   logo: string;
   period: string;
   description: string;
+  url?: string;
 }
 
 export interface BlogPost {
