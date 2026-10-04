@@ -209,27 +209,31 @@ Then update your API calls in the frontend to use the custom domain.
 
 ## Environment Variables
 
-### Frontend Environment Variables
+GitHub Pages = frontend only. Render = backend. Do not put backend secrets in GitHub Secrets.
 
-Frontend variables must be prefixed with `VITE_` to be available in the browser.
+### Frontend (GitHub Secrets)
 
-Create `.env.local` in root:
-```env
-VITE_API_URL=https://your-backend.com
-```
+Only one secret is required for the Pages deploy:
+
+- `VITE_RENDER_URL` — your Render backend URL (e.g. `https://your-service.onrender.com`)
+
+Vite only exposes vars prefixed with `VITE_` to the browser. The workflow writes this into `.env.production` before `npm run build:pages`.
 
 Access in code:
 ```typescript
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = import.meta.env.VITE_RENDER_URL;
 ```
 
-### Backend Environment Variables
+### Backend (Render Environment)
 
-Set these on your hosting platform:
+Set these on your Render Web Service (not in GitHub Secrets):
 
 - `SESSION_SECRET` - Random 32+ character string (generate with `openssl rand -base64 32`)
 - `DATABASE_URL` - PostgreSQL connection string (if using database)
-- `NODE_ENV` - Set to "production"
+- `FRONTEND_URL` - Your GitHub Pages URL (for CORS)
+- `RESEND_API_KEY` - Resend API key for contact-form email
+- `NOTIFICATION_EMAIL` - Inbox that receives contact-form messages
+- `NODE_ENV` - Set to `production`
 
 ## Troubleshooting
 

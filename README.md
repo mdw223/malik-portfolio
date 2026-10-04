@@ -73,26 +73,41 @@ A modern, full-featured personal portfolio website built with React, TypeScript,
    npm install @types/cors -D
    ```
 
-3. **Configure environment variables** (optional)
-   Create a `.env.local` file in the root directory:
-   ```env
-   DATABASE_URL=your_database_url_here
-   SESSION_SECRET=your_session_secret
-   RESEND_API_KEY=_your_resend_api_key
-   NOTIFICATION_EMAIL=your_email
-   VITE_RENDER_URL=your_backend_deployment_url
-   ```
+3. **Configure environment variables** (optional for local dev)
+   Copy `.env.example` to `.env` and fill in values. See **Where to put environment variables** below for which vars belong where in production.
 
-### GitHub Pages Deployment for React with Environment Variables (Sample GitHub Actions Workflow with Secrets)
+### Where to put environment variables
 
-GitHub Secrets provide the most secure way to handle environment variables for GitHub Pages
+GitHub Pages hosts the **frontend only**. Render hosts the **backend**. Put each secret in the place that actually uses it.
 
-1. Go to your repository
-2. Click "Settings"
-3. Select "Secrets and variables"
-4. Choose "Actions"
-5. Click "New repository secret"
-6. Write a deploy.yml in .github/workflows/ folder
+| Variable | Where | Why |
+|---|---|---|
+| `VITE_RENDER_URL` | **GitHub Secrets** (+ local `.env`) | Baked into the frontend at build time so the site knows your API URL |
+| `DATABASE_URL` | **Render** (+ local `.env`) | Backend database connection |
+| `SESSION_SECRET` | **Render** (+ local `.env`) | Backend session encryption |
+| `FRONTEND_URL` | **Render** (+ local `.env`) | Backend CORS / allowed origin (your GitHub Pages URL) |
+| `RESEND_API_KEY` | **Render** (+ local `.env`) | Backend sends contact-form emails via Resend |
+| `NOTIFICATION_EMAIL` | **Render** (+ local `.env`) | Backend delivers contact-form messages to this address |
+
+**Do not** put `DATABASE_URL`, `SESSION_SECRET`, `FRONTEND_URL`, `RESEND_API_KEY`, or `NOTIFICATION_EMAIL` in GitHub Secrets — the Pages deploy never uses them.
+
+#### GitHub Secrets (frontend deploy)
+
+1. Repo → Settings → Secrets and variables → Actions
+2. Add **only** `VITE_RENDER_URL` (e.g. `https://your-service.onrender.com`)
+3. Workflow: `.github/workflows/deploy.yml` writes it into `.env.production` before `npm run build:pages`
+
+#### Render env vars (backend)
+
+On your Render Web Service → Environment, set:
+
+```env
+DATABASE_URL=your_database_url_here
+SESSION_SECRET=your_session_secret
+FRONTEND_URL=https://yourusername.github.io/malik-portfolio
+RESEND_API_KEY=your_resend_api_key
+NOTIFICATION_EMAIL=malik.code@outlook.com
+```
 
 ### MY GITHUB ACTIONS deploy.yml
 ```yaml
@@ -137,18 +152,12 @@ jobs: # the job that occurs when we deploy
       - name: Install dependencies
         run: npm ci
 
+      # Only VITE_* vars are needed here — they get baked into the static frontend build.
+      # Backend secrets (DATABASE_URL, RESEND_API_KEY, etc.) live on Render, not GitHub.
       - name: Set Environment Variables
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
-          FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          NOTIFICATION_EMAIL: ${{ secrets.NOTIFICATION_EMAIL }}
           VITE_RENDER_URL: ${{ secrets.VITE_RENDER_URL }}
         run: |
-          echo "REACT_APP_EMAIL_SERVICE_ID=$REACT_APP_EMAIL_SERVICE_ID" >> .env.production
-          echo "REACT_APP_EMAIL_TEMPLATE_ID=$REACT_APP_EMAIL_TEMPLATE_ID" >> .env.production
-          echo "REACT_APP_EMAIL_PUBLIC_KEY=$REACT_APP_EMAIL_PUBLIC_KEY" >> .env.production
           echo "VITE_RENDER_URL=$VITE_RENDER_URL" >> .env.production
 
       - name: Copy index.html from client to dist
@@ -523,11 +532,13 @@ await transporter.sendMail({...})
 ### How I did Email Sending
 
 I used [resend](https://resend.com). The free tier is 100 emails/day.
-1. Sign up
-2. Get your API key from the dashboard
-3. Specify your keys in your environment or in github pages
-Now emails will be sent TO your Outlook email.
-Works anywhere your app is deployed (Vercel, Railway, etc.)
+1. Sign up and get your API key from the dashboard
+2. Set these on **Render** (backend), not GitHub Secrets:
+   - `RESEND_API_KEY` — your Resend API key
+   - `NOTIFICATION_EMAIL` — where contact-form messages are delivered (e.g. `malik.code@outlook.com`)
+3. Locally, put the same vars in `.env`
+
+Contact emails are sent by the Express backend on Render. GitHub Pages only hosts the static frontend.
 
 
 ## Deployment 
@@ -581,11 +592,17 @@ For a complete deployment with backend:
    Root Directory: /backend (if applicable)
    Build Command: npm install && npm run build:backend
    Start Command: npm start
-6. Add environment varibles 
+6. Add environment variables on Render (not in GitHub Secrets):
 
-Environment variables to set on your hosting platform:
-- `DATABASE_URL` - PostgreSQL connection string (if using database)
-- `SESSION_SECRET` - Random string for session encryption
+```env
+DATABASE_URL=your_database_url_here
+SESSION_SECRET=your_session_secret
+FRONTEND_URL=https://yourusername.github.io/malik-portfolio
+RESEND_API_KEY=your_resend_api_key
+NOTIFICATION_EMAIL=malik.code@outlook.com
+```
+
+Then set `VITE_RENDER_URL` in **GitHub Secrets** to your Render service URL so the frontend can call the API.
 
 ### Option 3: Docker Deployment
 
