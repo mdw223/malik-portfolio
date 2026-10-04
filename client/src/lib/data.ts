@@ -18,7 +18,7 @@ export const personalInfo: PersonalInfo = {
   github: "https://github.com/mdw223",
   youtube: "https://www.youtube.com/@MalikDiallo223",
   calendlyUrl: "https://calendly.com/tritechs",
-  email: "malik.code@proton.me",
+  email: "malik.code@outlook.com",
   axiomWorkspaceUrl: "https://axiomworkspace.com/"
 };
 

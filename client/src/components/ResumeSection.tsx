@@ -30,7 +30,7 @@ export function ResumeSection() {
                       <div className="space-y-1">
                         <h3 className="text-2xl font-bold">Malik Wensman</h3>
                         <p className="text-muted-foreground">AI Agent Developer & Full-Stack Engineer</p>
-                        <p className="text-sm text-muted-foreground">malik.code@proton.me</p>
+                        <p className="text-sm text-muted-foreground">malik.code@outlook.com</p>
                       </div>
                     </div>
 

@@ -526,7 +526,7 @@ I used [resend](https://resend.com). The free tier is 100 emails/day.
 1. Sign up
 2. Get your API key from the dashboard
 3. Specify your keys in your environment or in github pages
-Now emails will be sent TO your Proton email.
+Now emails will be sent TO your Outlook email.
 Works anywhere your app is deployed (Vercel, Railway, etc.)
 
 
