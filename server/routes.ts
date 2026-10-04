@@ -15,7 +15,7 @@ async function sendEmailNotification(data: {
   message: string;
 }) {
   await resend.emails.send({
-    from: `Contact Form <onboarding@resend.dev>`,
+    from: `Contact Form <contact@tritechhelp.com>`,
     to: process.env.NOTIFICATION_EMAIL!,
     replyTo: data.email,
     subject: `New Contact Form: ${data.subject}`,
